@@ -1,0 +1,16 @@
+name: "SignMap"
+version: "1.0"
+author: "Alskar"
+main: ru.alskar.signmap.SignMap
+api-version: 1.16
+permissions:
+  signmap.unsign:
+    description: Allows players to unsign the maps they didn't sign. Server operators have this by default.
+    default: op
+commands:
+  signmap:
+    description: "Sings the map in main hand with the name of the player holding it, so only they can copy the map."
+    usage: /<command>
+  unsignmap:
+    description: "Unsigns the map in main hand, so any player can copy it. Available only for players which signed the map and Operators."
+    usage: /<command>
