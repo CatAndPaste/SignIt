@@ -12,5 +12,5 @@ commands:
     description: "Sings the map in main hand with the name of the player holding it, so only they can copy the map."
     usage: /<command>
   unsignmap:
-    description: "Unsigns the map in main hand, so any player can copy it. Available only for players which signed the map and Operators."
+    description: "Unsigns the map in main hand, so any player can copy it. Available only for players who signed the map and Operators."
     usage: /<command>

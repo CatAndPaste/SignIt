@@ -16,11 +16,7 @@ import java.util.UUID;
 
 public class ListenerMapCopying implements Listener {
 
-    private final SignMap signMap;
-
-    public ListenerMapCopying(SignMap signMap) {
-        this.signMap = signMap;
-    }
+    private static final SignMap plugin = SignMap.getInstance();
 
     @EventHandler
     public void onNormalCraft(PrepareItemCraftEvent e) {
@@ -33,21 +29,21 @@ public class ListenerMapCopying implements Listener {
             ItemStack resultedItem = e.getInventory().getResult();
             ItemMeta itemMeta = resultedItem.getItemMeta();
             PersistentDataContainer container = itemMeta.getPersistentDataContainer();
-            if (container.has(signMap.keyUUID, new PersistentUUID())) {
+            if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
                 HumanEntity viewer = e.getView().getPlayer();
                 if (!(viewer instanceof Player)) {
                     e.getInventory().setResult(new ItemStack(Material.AIR));
-                    signMap.getLogger().warning("[SignMap] Seems like non-player entity tried to copy map, " +
+                    plugin.getLogger().warning("[SignMap] Seems like non-player entity tried to copy map, " +
                             "operation denied.");
                     return;
                 }
                 UUID uuid = viewer.getUniqueId();
-                UUID authorUUID = container.get(signMap.keyUUID, new PersistentUUID());
+                UUID authorUUID = container.get(plugin.getKeyUUID(), new PersistentUUID());
                 if (!uuid.equals(authorUUID)) {
                     e.getInventory().setResult(new ItemStack(Material.AIR));
                     Player player = (Player) e.getView().getPlayer();
-                    String author = container.has(signMap.keyName, PersistentDataType.STRING) ?
-                                    container.get(signMap.keyName, PersistentDataType.STRING) : "unknown player";
+                    String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
+                                    container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
                     player.sendMessage(String.format("§cHey, you cannot copy this map! It was signed by %s.", author));
                 }
             }
@@ -63,21 +59,21 @@ public class ListenerMapCopying implements Listener {
             if (item.getType() == Material.FILLED_MAP) {
                 ItemMeta itemMeta = item.getItemMeta();
                 PersistentDataContainer container = itemMeta.getPersistentDataContainer();
-                if (container.has(signMap.keyUUID, new PersistentUUID())) {
+                if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
                     HumanEntity viewer = e.getView().getPlayer();
                     if (!(viewer instanceof Player)) {
                         e.setCancelled(true);
-                        signMap.getLogger().warning("[SignMap] Seems like non-player entity tried to copy a map " +
+                        plugin.getLogger().warning("[SignMap] Seems like non-player entity tried to copy a map " +
                                 "using Cartography Table, operation denied.");
                         return;
                     }
                     UUID uuid = viewer.getUniqueId();
-                    UUID authorUUID = container.get(signMap.keyUUID, new PersistentUUID());
+                    UUID authorUUID = container.get(plugin.getKeyUUID(), new PersistentUUID());
                     if (!uuid.equals(authorUUID)) {
                         e.setCancelled(true);
                         Player player = (Player) e.getView().getPlayer();
-                        String author = container.has(signMap.keyName, PersistentDataType.STRING) ?
-                                container.get(signMap.keyName, PersistentDataType.STRING) : "unknown player";
+                        String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
+                                container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
                         player.sendMessage(String.format("§cHey, you cannot copy this map! It was signed by %s.",
                                 author));
                     }
