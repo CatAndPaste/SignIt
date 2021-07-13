@@ -1,7 +1,6 @@
 package ru.alskar.signmap;
 
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -11,13 +10,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 public class CommandUnsignMap implements CommandExecutor {
 
-    private SignMap signMap;
+    private final SignMap signMap;
 
     public CommandUnsignMap(SignMap signMap) {
         this.signMap = signMap;
@@ -45,11 +43,7 @@ public class CommandUnsignMap implements CommandExecutor {
                         // And removing "Signed by" line in lore
                         List<String> lore = itemMeta.getLore();
                         if (lore != null) {
-                            Iterator<String> i = lore.iterator();
-                            while (i.hasNext()) {
-                                if (i.next().contains("§7Signed by §6"))
-                                    i.remove();
-                            }
+                            lore.removeIf(s -> s.contains("§7Signed by §6"));
                             itemMeta.setLore(lore);
                             item.setItemMeta(itemMeta);
                         }

@@ -1,7 +1,6 @@
 package ru.alskar.signmap;
 
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ import java.util.UUID;
 
 public class ListenerMapCopying implements Listener {
 
-    private SignMap signMap;
+    private final SignMap signMap;
 
     public ListenerMapCopying(SignMap signMap) {
         this.signMap = signMap;

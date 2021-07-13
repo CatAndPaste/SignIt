@@ -1,7 +1,6 @@
 package ru.alskar.signmap;
 
 import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,7 +16,7 @@ import java.util.UUID;
 
 public class CommandSignMap implements CommandExecutor {
 
-    private SignMap signMap;
+    private final SignMap signMap;
 
     public CommandSignMap(SignMap signMap) {
         this.signMap = signMap;
@@ -51,7 +50,7 @@ public class CommandSignMap implements CommandExecutor {
                     String authorName = player.getDisplayName();
                     container.set(signMap.keyName, PersistentDataType.STRING, authorName);
                     // We also add lore line saying who signed the map:
-                    List<String> lore = ((lore = mapMeta.getLore()) != null) ? lore : new ArrayList();
+                    List<String> lore = ((lore = mapMeta.getLore()) != null) ? lore : new ArrayList<>();
                     lore.add("§7Signed by §6" + authorName);
                     mapMeta.setLore(lore);
                     map.setItemMeta(mapMeta);
