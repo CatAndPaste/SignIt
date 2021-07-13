@@ -1,4 +1,4 @@
-package ru.alskar.signmap;
+package ru.alskar.signmap.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -11,10 +11,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import ru.alskar.signmap.types.PersistentUUID;
+import ru.alskar.signmap.SignMap;
 
 import java.util.UUID;
 
-public class ListenerMapCopying implements Listener {
+public class ListenerMapCloning implements Listener {
 
     private static final SignMap plugin = SignMap.getInstance();
 
@@ -25,6 +27,7 @@ public class ListenerMapCopying implements Listener {
         if (e.getInventory().getResult() == null)
             return;
         Material itemType = e.getInventory().getResult().getType();
+        // If result of craft is Filled Map, let's check if it's signed.
         if (itemType == Material.FILLED_MAP) {
             ItemStack resultedItem = e.getInventory().getResult();
             ItemMeta itemMeta = resultedItem.getItemMeta();
@@ -44,7 +47,7 @@ public class ListenerMapCopying implements Listener {
                     Player player = (Player) e.getView().getPlayer();
                     String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
                                     container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
-                    player.sendMessage(String.format("§cHey, you cannot copy this map! It was signed by %s.", author));
+                    player.sendMessage(String.format(plugin.getLocale().ERROR_NOT_ALLOWED_TO_COPY, author));
                 }
             }
         }
@@ -52,6 +55,8 @@ public class ListenerMapCopying implements Listener {
 
     @EventHandler
     public void onCartographerTable(InventoryClickEvent e) {
+        // Due to API limitations, InventoryClickEvent should be used.
+        // If the active inventory is of Cartography Table, let's check if player clicks on a Filled Map.
         if (e.getInventory() instanceof CartographyInventory) {
             ItemStack item = e.getCurrentItem();
             if (item == null)
@@ -59,6 +64,7 @@ public class ListenerMapCopying implements Listener {
             if (item.getType() == Material.FILLED_MAP) {
                 ItemMeta itemMeta = item.getItemMeta();
                 PersistentDataContainer container = itemMeta.getPersistentDataContainer();
+                // If the map is signed, we check if the player is allowed to copy it.
                 if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
                     HumanEntity viewer = e.getView().getPlayer();
                     if (!(viewer instanceof Player)) {
@@ -69,12 +75,14 @@ public class ListenerMapCopying implements Listener {
                     }
                     UUID uuid = viewer.getUniqueId();
                     UUID authorUUID = container.get(plugin.getKeyUUID(), new PersistentUUID());
+                    // Otherwise, the map stays in its slot. Might be not the most elegant solution.
                     if (!uuid.equals(authorUUID)) {
                         e.setCancelled(true);
                         Player player = (Player) e.getView().getPlayer();
                         String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
-                                container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
-                        player.sendMessage(String.format("§cHey, you cannot copy this map! It was signed by %s.",
+                                container.get(plugin.getKeyName(), PersistentDataType.STRING) :
+                                plugin.getLocale().UNKNOWN_PLAYER;
+                        player.sendMessage(String.format(plugin.getLocale().ERROR_NOT_ALLOWED_TO_COPY,
                                 author));
                     }
                 }

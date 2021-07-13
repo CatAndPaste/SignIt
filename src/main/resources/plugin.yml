@@ -4,7 +4,7 @@ version: ${project.version}
 author: "Alskar"
 api-version: "1.13"
 permissions:
-  signmap.unsign:
+  signmap.unsign.others:
     description: Allows players to unsign the maps they didn't sign. Server operators have this by default.
     default: op
 commands:

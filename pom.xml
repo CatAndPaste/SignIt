@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.alskar</groupId>
     <artifactId>SignMap</artifactId>
-    <version>1.0</version>
+    <version>1.01</version>
     <name>SignMap</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,7 +40,14 @@
                 <version>3.2.4</version>
                 <configuration>
                     <relocations>
-
+                        <relocation>
+                            <pattern>co.aikar.commands</pattern>
+                            <shadedPattern>ru.alskar.signmap.thirdparty.co.aikar.commands</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.locales</pattern>
+                            <shadedPattern>ru.alskar.signmap.thirdparty.co.aikar.locales</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>

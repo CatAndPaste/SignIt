@@ -1,0 +1,18 @@
+# Locale file for SignMap plugin
+
+message-prefix: "&7[&fSign&cMap&7]" # space will be added automagically
+message-error-no-map-to-sign: "&cYou need to have the map you want to sign in your main hand!"
+message-error-no-map-to-unsign: "&cYou need to have the map you want to unsign in your main hand!"
+message-error-map-already-signed: "&cMap is already signed by %s." # %s - name of the player who signed the map
+message-error-map-not-signed: "&cThis map is not signed!"
+message-error-not-allowed-to-unsign: "&cHey, only player that signed this map or server Operator can unsign it!"
+message-signed-successfully: "&aMap signed successfully! Author is now set to &e%s&a." # %s - name of the player
+message-unsigned-successfully: "&aMap unsigned successfully, anyone can copy it now!"
+message-error-not-allowed-to-copy: "&cHey, you cannot copy this map! It was signed by %s." # %s - name of the player
+
+# Appears in the lore of signed maps.
+# %s - name of the player who signed the map.
+lore-text: "&7Signed by &6%s"
+# Placeholder will only appear if no information was found about name of the player who signed the map.
+# It's here just-in-case. No one will probably see this placeholder anyway.
+unknown-player: "unknown player"
