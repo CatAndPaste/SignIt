@@ -8,3 +8,7 @@ enable-kitten-on-startup: true
 # Should the prefix with plugin name be shown before in-game messages?
 # This setting doesn't affect messages in the console.
 show-prefix: true
+
+#Aliases for general commands.
+signmap-aliases: [sign]
+unsignmap-aliases: [unsign]

@@ -2,6 +2,7 @@ package ru.alskar.signmap.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -50,7 +51,8 @@ public class CommandSignMap extends BaseCommand {
         UUID uuid = player.getUniqueId();
         container.set(plugin.getKeyUUID(), new PersistentUUID(), uuid);
         // Also, we write player's name:
-        String authorName = player.getDisplayName();
+        // Not to forget to reset Chat Color, so we don't mess this up when it's time to /unsign
+        String authorName = ChatColor.stripColor(player.getDisplayName());
         container.set(plugin.getKeyName(), PersistentDataType.STRING, authorName);
         // And the text which we'll put in item's lore:
         String loreText = String.format(plugin.getLocale().LORE_TEXT, authorName);

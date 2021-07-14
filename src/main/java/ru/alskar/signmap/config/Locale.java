@@ -7,8 +7,6 @@ import ru.alskar.signmap.SignMap;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Locale {
     public final String PREFIX;
@@ -49,17 +47,17 @@ public class Locale {
         this.ERROR_NO_MAP_IN_HAND_TO_SIGN = MessageBuilder(messages,"message-error-no-map-to-sign",
                         "&cYou need to have the map you want to sign in your main hand!", showPrefix);
         this.ERROR_NO_MAP_IN_HAND_TO_UNSIGN = MessageBuilder(messages,"message-error-no-map-to-unsign",
-                        "§cYou need to have the map you want to unsign in your main hand!", showPrefix);
+                        "&cYou need to have the map you want to unsign in your main hand!", showPrefix);
         this.ERROR_MAP_ALREADY_SIGNED = MessageBuilder(messages,"message-error-map-already-signed",
                         "&cMap is already signed by %s.", showPrefix);
         this.ERROR_MAP_NOT_SIGNED = MessageBuilder(messages,"message-error-map-not-signed",
                         "&cThis map is not signed!", showPrefix);
         this.ERROR_NOT_ALLOWED_TO_UNSIGN = MessageBuilder(messages,"message-error-not-allowed-to-unsign",
-                        "&cHey, only player that signed this map or server Operator can unsign it!", showPrefix);
+                        "&cHey, only player that signed this map or server operators can unsign it!", showPrefix);
         this.ERROR_NOT_ALLOWED_TO_COPY = MessageBuilder(messages,"message-error-not-allowed-to-copy",
                         "&cHey, you cannot copy this map! It was signed by %s.", showPrefix);
         this.SUCCESSFULLY_UNSIGNED = MessageBuilder(messages,"message-unsigned-successfully",
-                        "&aMap unsigned successfully, anyone can copy it now!", showPrefix);
+                        "&aMap unsigned successfully! Anyone can copy it now!", showPrefix);
         this.SUCCESSFULLY_SIGNED = MessageBuilder(messages,"message-signed-successfully",
                         "&aMap signed successfully! Author is now set to &e%s&a.", showPrefix);
 
