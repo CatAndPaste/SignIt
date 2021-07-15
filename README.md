@@ -1,7 +1,7 @@
 # SignMap
 Minecraft plugin which gives your players an ability to sign the maps preventing other players from copying them.
 
-##Commands
+## Commands
 | Command | Aliases | Description |
 | --- | --- | --- |
 | signmap | sign | Sings map in main hand, preventing others from copying it |
@@ -9,7 +9,7 @@ Minecraft plugin which gives your players an ability to sign the maps preventing
 | signall | - | Sings map in main hand, preventing others from copying it |
 | unsignall | - | Sings map in main hand, preventing others from copying it |
 
-##Permissions
+## Permissions
 | Permission | Default | Description |
 | --- | --- | --- |
 | signmap.sign | true | Players with this permission are able to sign maps |
