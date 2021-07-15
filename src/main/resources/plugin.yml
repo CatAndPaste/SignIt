@@ -2,10 +2,10 @@ name: SignMap
 main: ru.alskar.signmap.SignMap
 version: ${project.version}
 author: "Alskar"
-api-version: "1.13"
+api-version: "1.14"
 permissions:
   signmap.unsign.others:
-    description: Allows players to unsign the maps they didn't sign. Server operators have this by default.
+    description: "Allows players to unsign the maps they didn't sign. Server operators have this by default."
     default: op
 commands:
   signmap:
@@ -13,4 +13,10 @@ commands:
     usage: /<command>
   unsignmap:
     description: "Unsigns the map in main hand, so any player can copy it. Available only for players who signed the map and Operators."
+    usage: /<command>
+  signall:
+    description: "Sings all maps in player's inventory."
+    usage: /<command>
+  unsignall:
+    description: "Unsigns all maps in player's inventory."
     usage: /<command>

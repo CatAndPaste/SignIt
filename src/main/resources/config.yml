@@ -1,6 +1,10 @@
 # Configuration file for SignMap plugin
 # Made by Alskar with <3
 
+# Which language file should be used. They're stored in SignMap/languages/.
+# You can even create your own!
+language: english
+
 # Shows cute kitten looking at you in console when plugin is enabled.
 # Set it to false in case you're a dog person.
 enable-kitten-on-startup: true
@@ -22,5 +26,8 @@ use-display-names-colors: false
 show-prefix: true
 
 # Commands aliases:
-signmap-aliases: [sign]
-unsignmap-aliases: [unsign]
+signmap-aliases: sign
+unsignmap-aliases: unsign
+
+# Please do not change value below, so your configuration file can get new options in future updates:
+config-version: 0

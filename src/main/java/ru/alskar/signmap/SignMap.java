@@ -31,6 +31,10 @@ public class SignMap extends JavaPlugin {
         Metrics metrics = new Metrics(this, pluginId);
         // Registering commands:
         PaperCommandManager commandManager = new PaperCommandManager(this);
+        commandManager.getCommandReplacements().addReplacement("signmap", "signmap|" +
+                this.getConfig().getString("signmap-aliases"));
+        commandManager.getCommandReplacements().addReplacement("unsignmap", "unsignmap|" +
+                this.getConfig().getString("unsignmap-aliases"));
         commandManager.registerCommand(new CommandSignMap());
         // And listeners:
         getServer().getPluginManager().registerEvents(new ListenerMapCloning(), this);

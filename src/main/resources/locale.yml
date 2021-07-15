@@ -4,15 +4,33 @@
 
 message-prefix: "&7[&fSign&cMap&7]" # space after prefix will be added automagically
 
-# Messages:
+# Individual map messages:
 message-error-no-map-to-sign: "&cYou need to have the map you want to sign in your main hand!"
 message-error-no-map-to-unsign: "&cYou need to have the map you want to unsign in your main hand!"
-message-error-map-already-signed: "&cMap is already signed by %s." # %s - name of the player who signed the map
+message-error-map-already-signed: "&cMap is already signed by &6%s&c." # %s - name of the player who signed the map
 message-error-map-not-signed: "&cThis map is not signed!"
 message-error-not-allowed-to-unsign: "&cHey, only player that signed this map or server operators can unsign it!"
 message-signed-successfully: "&aMap signed successfully! Author is now set to &e%s&a." # %s - name of the player
 message-unsigned-successfully: "&aMap unsigned successfully! Anyone can copy it now!"
-message-error-not-allowed-to-copy: "&cHey, you cannot copy this map! It was signed by %s." # %s - name of the player
+message-error-not-allowed-to-copy: "&cHey, you cannot copy this map! It was signed by &6%s&c." # %s - name of the player
+
+# Multiple maps messages:
+# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if number is 1
+# or message-placeholder-maps if number is not 1.
+message-error-no-maps-in-inventory: "&cThere are no filled maps found in your inventory!"
+message-error-all-maps-signed: "&cAll maps in your inventory already signed!"
+message-error-all-maps-not-signed: "&cMaps in your inventory are not signed!"
+message-error-all-maps-signed-by-someone-else: "&cAll maps in your inventory signed by someone else!"
+message-maps-found-in-inventory: "&aI looked through your inventory and found %d {map(s)}."
+message-maps-signed-successfully: "&aSuccessfully signed %d {map(s)}."
+message-maps-already-signed: "&e%d {map(s)} were already signed, skipped them."
+message-maps-unisigned-successfully: "&aSuccessfully unsigned %d {map(s)}"
+message-maps-not-signed: "&e%d {map(s)} were not signed, skipped them."
+message-maps-signed-by-someone-else: "&e%d {map(s)} were signed by someone else, skipped them."
+
+# Placeholders for messages:
+message-placeholder-map: "map"    # single map
+message-placeholder-maps: "maps"  # plural maps
 
 # Other text:
 # Appears in the lore of the signed maps.
