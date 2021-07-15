@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.alskar</groupId>
     <artifactId>SignMap</artifactId>
-    <version>1.02</version>
+    <version>1.03</version>
     <name>SignMap</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -40,6 +40,10 @@
                 <version>3.2.4</version>
                 <configuration>
                     <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <shadedPattern>ru.alskar.signmap.thirdparty.org.bstats</shadedPattern>
+                        </relocation>
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>ru.alskar.signmap.thirdparty.co.aikar.commands</shadedPattern>
@@ -102,6 +106,12 @@
             <artifactId>spigot-api</artifactId>
             <version>1.17-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>2.2.1</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>

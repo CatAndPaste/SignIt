@@ -5,10 +5,22 @@
 # Set it to false in case you're a dog person.
 enable-kitten-on-startup: true
 
+# If players' 'friendly' display names will be used instead of their real names in lore and messages.
+# If there are no plugins which change or allow players to change their display names installed,
+# this should not make any difference.
+# Recommended: true - display names usually look nicer, although if players are able to change them,
+# display names might become confusing.
+use-players-display-names: true
+
+# Display names might have colors in them. If these colors should be used in lore and messages.
+# If use-players-display-names is set to false, option bellow won't have any effect.
+# Recommended: false - to avoid formatting clutter in some cases.
+use-display-names-colors: false
+
 # Should the prefix with plugin name be shown before in-game messages?
 # This setting doesn't affect messages in the console.
 show-prefix: true
 
-#Aliases for general commands.
+# Commands aliases:
 signmap-aliases: [sign]
 unsignmap-aliases: [unsign]

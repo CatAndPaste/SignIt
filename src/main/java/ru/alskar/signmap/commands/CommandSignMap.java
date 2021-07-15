@@ -9,11 +9,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import ru.alskar.signmap.config.Config;
 import ru.alskar.signmap.types.PersistentUUID;
 import ru.alskar.signmap.SignMap;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,12 +51,18 @@ public class CommandSignMap extends BaseCommand {
         UUID uuid = player.getUniqueId();
         container.set(plugin.getKeyUUID(), new PersistentUUID(), uuid);
         // Also, we write player's name:
-        // Not to forget to reset Chat Color, so we don't mess this up when it's time to /unsign
-        String authorName = ChatColor.stripColor(player.getDisplayName());
+        String authorName;
+        if (plugin.getConfig().getBoolean(Config.USE_DISPLAY_NAMES)) {
+            if (plugin.getConfig().getBoolean(Config.USE_NAMES_COLORS))
+                authorName = player.getDisplayName();
+            else
+                authorName = ChatColor.stripColor(player.getDisplayName());
+        } else
+            authorName = player.getName();
         container.set(plugin.getKeyName(), PersistentDataType.STRING, authorName);
         // And the text which we'll put in item's lore:
         String loreText = String.format(plugin.getLocale().LORE_TEXT, authorName);
-        container.set(plugin.getKeyLore(), PersistentDataType.STRING, loreText);
+        container.set(plugin.getKeyLore(), PersistentDataType.STRING, ChatColor.stripColor(loreText));
         // We also add lore line saying who signed the map:
         List<String> lore = ((lore = itemMeta.getLore()) != null) ? lore : new ArrayList<>();
         lore.add(loreText);
@@ -99,29 +105,17 @@ public class CommandSignMap extends BaseCommand {
             container.remove(plugin.getKeyName());
         }
         // If there's lore text saved in persistent container, save it before removing data.
-        String loreText = null;
+        List<String> loreToRemove = new ArrayList<>();
         if (container.has(plugin.getKeyLore(), PersistentDataType.STRING)) {
-            loreText = container.get(plugin.getKeyLore(), PersistentDataType.STRING);
+            loreToRemove.add(ChatColor.stripColor(container.get(plugin.getKeyLore(), PersistentDataType.STRING)));
             container.remove(plugin.getKeyLore());
         }
         // If item was signed before locale.yml and 'lore-text' key were introduced, also look for an outdated text:
-        String outdatedLoreText = "§7Signed by §6";
-        // And, finally, let's remove our custom lore from the item:
+        loreToRemove.add("Signed by ");
+        // And, finally, let's remove custom lore we've added in past from the item:
         List<String> lore = itemMeta.getLore();
         if (lore != null) {
-            // Had to drop that beautiful one-line lambda because loreText isn't final D:
-            // I waaaant to sleep today', not to forget to look at this later.
-            Iterator<String> line = lore.iterator();
-            String lineText;
-            while (line.hasNext()) {
-                // If item has no lore text in its persistent container, look only for an outdated text:
-                lineText = line.next();
-                if ((loreText == null)
-                        ? lineText.contains(outdatedLoreText)
-                        : lineText.equals(loreText) || lineText.contains(outdatedLoreText)) {
-                    line.remove();
-                }
-            }
+            lore.removeIf(s -> loreToRemove.stream().anyMatch(l -> ChatColor.stripColor(s).startsWith(l)));
             itemMeta.setLore(lore);
         }
         // Saving changes:

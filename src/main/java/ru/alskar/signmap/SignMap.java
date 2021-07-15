@@ -1,6 +1,7 @@
 package ru.alskar.signmap;
 import co.aikar.commands.PaperCommandManager;
 import lombok.Getter;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.alskar.signmap.commands.CommandSignMap;
@@ -25,6 +26,9 @@ public class SignMap extends JavaPlugin {
     public void onEnable() {
         // Creating config file:
         this.saveDefaultConfig();
+        // Adding Metrics by bStats:
+        final int pluginId = 12054;
+        Metrics metrics = new Metrics(this, pluginId);
         // Registering commands:
         PaperCommandManager commandManager = new PaperCommandManager(this);
         commandManager.registerCommand(new CommandSignMap());
