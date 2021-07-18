@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.alskar</groupId>
     <artifactId>SignMap</artifactId>
-    <version>1.04</version>
+    <version>1.05</version>
     <name>SignMap</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -52,6 +52,10 @@
                             <pattern>co.aikar.locales</pattern>
                             <shadedPattern>ru.alskar.signmap.thirdparty.co.aikar.locales</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>de.jeff_media.updatechecker</pattern>
+                            <shadedPattern>ru.alskar.signmap.thirdparty.de.jeff_media.updatechecker</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
@@ -80,6 +84,10 @@
         <repository>
             <id>spigot-snapshots</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
+        <repository>
+            <id>jeff-media-gbr</id>
+            <url>https://repo.jeff-media.de/maven2/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -111,6 +119,12 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>2.2.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.jeff_media</groupId>
+            <artifactId>SpigotUpdateChecker</artifactId>
+            <version>1.2.5</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

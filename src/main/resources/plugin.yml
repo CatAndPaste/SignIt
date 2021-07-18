@@ -4,19 +4,37 @@ version: ${project.version}
 author: "Alskar"
 api-version: "1.14"
 permissions:
+  signmap.sign:
+    description: "Players with this permission are able to sign maps"
+    default: true
+  signmap.unsign:
+    description: "Players with this permission are able to unsign maps signed by them"
+    default: true
+  signmap.signall:
+    description: "Players with this permission are able to sign all maps in their inventory"
+    default: true
+  signmap.unsignall:
+    description: "Players with this permission are able to unsign all allowed maps in their inventory"
+    default: true
   signmap.unsign.others:
-    description: "Allows players to unsign the maps they didn't sign. Server operators have this by default."
+    description: "Players with this permission are able to unsign maps signed by other players. Server operators have this by default"
+    default: op
+  signmap.reload:
+    description: "Players with this permission are able to reload plugin config and language files"
     default: op
 commands:
   signmap:
-    description: "Sings the map in main hand with the name of the player holding it, so only they can copy the map."
+    description: "Sings map in main hand, preventing others from copying it."
     usage: /<command>
   unsignmap:
-    description: "Unsigns the map in main hand, so any player can copy it. Available only for players who signed the map and Operators."
+    description: "Unsigns map in main hand, so anyone can copy it. Available only for player who signed the map and operators"
     usage: /<command>
   signall:
-    description: "Sings all maps in player's inventory."
+    description: "Sings all accessible maps in player's inventory"
     usage: /<command>
   unsignall:
-    description: "Unsigns all maps in player's inventory."
+    description: "Unsigns all accessible maps in player's inventory"
+    usage: /<command>
+  reload:
+    description: "Reloads plugin configuration and language files"
     usage: /<command>

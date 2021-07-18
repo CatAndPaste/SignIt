@@ -1,7 +1,7 @@
 package ru.alskar.signmap.commands;
 
 import co.aikar.commands.BaseCommand;
-import co.aikar.commands.annotation.CommandAlias;
+import co.aikar.commands.annotation.*;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,7 +23,9 @@ public class CommandSignMap extends BaseCommand {
     private static final SignMap plugin = SignMap.getInstance();
 
     @CommandAlias("%signmap")
-    public static void signMap(Player player) {
+    @Description("Sings map in main hand, preventing others from copying it")
+    @CommandPermission("signmap.sign")
+    public static void onSign(Player player) {
         // If player doesn't hold a map, show them an error message and do nothing.
         if (player.getInventory().getItemInMainHand().getType() != Material.FILLED_MAP) {
             player.sendMessage(plugin.getLocale().ERROR_NO_MAP_IN_HAND_TO_SIGN);
@@ -74,7 +76,9 @@ public class CommandSignMap extends BaseCommand {
     }
 
     @CommandAlias("%unsignmap")
-    public static void unsignMap(Player player) {
+    @Description("Unsigns map in main hand, so anyone can copy it. Available only for player who signed the map and operators")
+    @CommandPermission("signmap.unsign")
+    public static void onUnsign(Player player) {
         // If player doesn't hold a map, show them an error message and do nothing.
         if (player.getInventory().getItemInMainHand().getType() != Material.FILLED_MAP) {
             player.sendMessage(plugin.getLocale().ERROR_NO_MAP_IN_HAND_TO_UNSIGN);
@@ -126,7 +130,9 @@ public class CommandSignMap extends BaseCommand {
     }
 
     @CommandAlias("signall")
-    public static void signAll(Player player) {
+    @Description("Sings all accessible maps in player's inventory")
+    @CommandPermission("signmap.signall")
+    public static void onSignall(Player player) {
         // Let's look through player's inventory, and if there are no maps, show an error.
         PlayerInventory inv = player.getInventory();
         if (!inv.contains(Material.FILLED_MAP)) {
@@ -190,7 +196,9 @@ public class CommandSignMap extends BaseCommand {
     }
 
     @CommandAlias("unsignall")
-    public static void unsignAll(Player player) {
+    @Description("Unsigns all accessible maps in player's inventory")
+    @CommandPermission("signmap.unsignall")
+    public static void onUnsignall(Player player) {
         // Let's look through player's inventory, and if there are no maps, show an error.
         PlayerInventory inv = player.getInventory();
         if (!inv.contains(Material.FILLED_MAP)) {

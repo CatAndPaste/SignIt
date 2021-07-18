@@ -1,16 +1,25 @@
 # Configuration file for SignMap plugin
 # Made by Alskar with <3
 
+# Commands:
+# /signmap - sings the map in hand,           permission: signmap.sign (default: true)
+# /unsignmap - unsigns the map in hand,       permission: signmap.unsign (default: true)
+# /signall - signs the maps in inventory,     permission: signmap.signall (default: true)
+# /unsignall - unsigns the maps in inventory, permission: signmap.unsignall (default: true)
+# /signmap reload - reloads config and lang,  permission: signmap.reload (OP)
+# Other permissions:
+# signmap.unsign.others - allows to unsign the maps signed by other players (OP)
+
 # Which language file should be used. They're stored in SignMap/languages/.
 # You can even create your own!
 language: english
 
-# Shows cute kitten looking at you in console when plugin is enabled.
+# Shows cute kitten looking at you in the console when plugin is enabled.
 # Set it to false in case you're a dog person.
 enable-kitten-on-startup: true
 
-# If players' 'friendly' display names will be used instead of their real names in lore and messages.
-# If there are no plugins which change or allow players to change their display names installed,
+# If players' 'friendly' display names should be used instead of their real names in lore and messages.
+# If there are no plugins which change or allow players to change their display names on the server,
 # this should not make any difference.
 # Recommended: true - display names usually look nicer, although if players are able to change them,
 # display names might become confusing.
@@ -23,11 +32,15 @@ use-display-names-colors: false
 
 # Should the prefix with plugin name be shown before in-game messages?
 # This setting doesn't affect messages in the console.
-show-prefix: true
+show-prefix: false
 
 # Commands aliases:
+# Use '|' as separator, e.g.: signmap-aliases: sign|sm|signthis
 signmap-aliases: sign
 unsignmap-aliases: unsign
 
-# Please do not change value below, so your configuration file can get new options in future updates:
-config-version: 0
+# Please DO NOT change the value below, so your configuration file can get new options in future updates.
+# Your changes will be preserved.
+# Otherwise, you'd need to remove plugins/SignMap/ contents (or SignMap folder itself) and use /signmap reload command
+# or restart the server in order to get up-to-date config and locale files.
+config-version: 1
