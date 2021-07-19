@@ -11,9 +11,11 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
+import ru.alskar.signmap.misc.Logs;
 import ru.alskar.signmap.types.PersistentUUID;
 import ru.alskar.signmap.SignMap;
 
+import java.text.MessageFormat;
 import java.util.UUID;
 
 public class ListenerMapCloning implements Listener {
@@ -22,21 +24,21 @@ public class ListenerMapCloning implements Listener {
 
     @EventHandler
     public void onNormalCraft(PrepareItemCraftEvent e) {
-        if (e.getInventory() == null)
-            return;
         if (e.getInventory().getResult() == null)
             return;
         Material itemType = e.getInventory().getResult().getType();
         // If result of craft is Filled Map, let's check if it's signed.
         if (itemType == Material.FILLED_MAP) {
             ItemStack resultedItem = e.getInventory().getResult();
+            if (!resultedItem.hasItemMeta())
+                return;
             ItemMeta itemMeta = resultedItem.getItemMeta();
             PersistentDataContainer container = itemMeta.getPersistentDataContainer();
             if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
                 HumanEntity viewer = e.getView().getPlayer();
                 if (!(viewer instanceof Player)) {
                     e.getInventory().setResult(new ItemStack(Material.AIR));
-                    plugin.getLogger().warning("[SignMap] Seems like non-player entity tried to copy map, " +
+                    plugin.log(Logs.WARN, "[SignMap] Seems like non-player entity tried to copy map, " +
                             "operation denied.");
                     return;
                 }
@@ -47,7 +49,7 @@ public class ListenerMapCloning implements Listener {
                     Player player = (Player) e.getView().getPlayer();
                     String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
                                     container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
-                    player.sendMessage(String.format(plugin.getLocale().ERROR_NOT_ALLOWED_TO_COPY, author));
+                    player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_ERROR_NOT_ALLOWED_TO_COPY, author));
                 }
             }
         }
@@ -62,6 +64,8 @@ public class ListenerMapCloning implements Listener {
             if (item == null)
                 return;
             if (item.getType() == Material.FILLED_MAP) {
+                if (!item.hasItemMeta())
+                    return;
                 ItemMeta itemMeta = item.getItemMeta();
                 PersistentDataContainer container = itemMeta.getPersistentDataContainer();
                 // If the map is signed, we check if the player is allowed to copy it.
@@ -69,7 +73,7 @@ public class ListenerMapCloning implements Listener {
                     HumanEntity viewer = e.getView().getPlayer();
                     if (!(viewer instanceof Player)) {
                         e.setCancelled(true);
-                        plugin.getLogger().warning("[SignMap] Seems like non-player entity tried to copy a map " +
+                        plugin.log(Logs.WARN, "[SignMap] Seems like non-player entity tried to copy a map " +
                                 "using Cartography Table, operation denied.");
                         return;
                     }
@@ -81,9 +85,8 @@ public class ListenerMapCloning implements Listener {
                         Player player = (Player) e.getView().getPlayer();
                         String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
                                 container.get(plugin.getKeyName(), PersistentDataType.STRING) :
-                                plugin.getLocale().UNKNOWN_PLAYER;
-                        player.sendMessage(String.format(plugin.getLocale().ERROR_NOT_ALLOWED_TO_COPY,
-                                author));
+                                plugin.getLocale().PH_UNKNOWN_PLAYER;
+                        player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_ERROR_NOT_ALLOWED_TO_COPY, author));
                     }
                 }
             }

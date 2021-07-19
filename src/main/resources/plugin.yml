@@ -20,7 +20,7 @@ permissions:
     description: "Players with this permission are able to unsign maps signed by other players. Server operators have this by default"
     default: op
   signmap.reload:
-    description: "Players with this permission are able to reload plugin config and language files"
+    description: "Players with this permission are able to reload plugin configuration and active language file"
     default: op
 commands:
   signmap:
@@ -36,5 +36,5 @@ commands:
     description: "Unsigns all accessible maps in player's inventory"
     usage: /<command>
   reload:
-    description: "Reloads plugin configuration and language files"
+    description: "Reloads plugin configuration and active language file"
     usage: /<command>

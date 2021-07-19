@@ -14,6 +14,7 @@ import ru.alskar.signmap.config.Config;
 import ru.alskar.signmap.types.PersistentUUID;
 import ru.alskar.signmap.SignMap;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -34,6 +35,8 @@ public class CommandSignMap extends BaseCommand {
 
         // Otherwise, let's take a closer look at the map!
         ItemStack item = player.getInventory().getItemInMainHand();
+        if (!item.hasItemMeta())
+            player.sendMessage("[SignMap] Something went wrong, please contact plugin developer.");
         ItemMeta itemMeta = item.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
@@ -41,10 +44,9 @@ public class CommandSignMap extends BaseCommand {
         if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
             if (container.has(plugin.getKeyName(), PersistentDataType.STRING)) {
                 String authorName = container.get(plugin.getKeyName(), PersistentDataType.STRING);
-                player.sendMessage(String.format(plugin.getLocale().ERROR_MAP_ALREADY_SIGNED, authorName));
+                player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_ERROR_MAP_ALREADY_SIGNED, authorName));
             } else {
-                player.sendMessage(String.format(plugin.getLocale().ERROR_MAP_ALREADY_SIGNED,
-                        plugin.getLocale().UNKNOWN_PLAYER));
+                player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_ERROR_MAP_ALREADY_SIGNED, plugin.getLocale().PH_UNKNOWN_PLAYER));
             }
             return;
         }
@@ -64,7 +66,7 @@ public class CommandSignMap extends BaseCommand {
             authorName = player.getName();
         container.set(plugin.getKeyName(), PersistentDataType.STRING, authorName);
         // And the text which we'll put in item's lore:
-        String loreText = String.format(plugin.getLocale().LORE_TEXT, authorName);
+        String loreText = MessageFormat.format(plugin.getLocale().FORMAT_LORE_TEXT, authorName);
         container.set(plugin.getKeyLore(), PersistentDataType.STRING, ChatColor.stripColor(loreText));
         // We also add lore line saying who signed the map:
         List<String> lore = ((lore = itemMeta.getLore()) != null) ? lore : new ArrayList<>();
@@ -72,7 +74,7 @@ public class CommandSignMap extends BaseCommand {
         itemMeta.setLore(lore);
         // Saving changes:
         item.setItemMeta(itemMeta);
-        player.sendMessage(String.format(plugin.getLocale().SUCCESSFULLY_SIGNED, authorName));
+        player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_SUCCESSFULLY_SIGNED, authorName));
     }
 
     @CommandAlias("%unsignmap")
@@ -87,6 +89,8 @@ public class CommandSignMap extends BaseCommand {
 
         // Otherwise, let's take a closer look!
         ItemStack item = player.getInventory().getItemInMainHand();
+        if (!item.hasItemMeta())
+            player.sendMessage("[SignMap] Something went wrong, please contact plugin developer.");
         ItemMeta itemMeta = item.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
@@ -157,6 +161,8 @@ public class CommandSignMap extends BaseCommand {
             if (item == null)
                 continue;
             if (item.getType() == Material.FILLED_MAP) {
+                if (!item.hasItemMeta())
+                    player.sendMessage("[SignMap] Something went wrong, please contact plugin developer.");
                 ItemMeta itemMeta = item.getItemMeta();
                 PersistentDataContainer container = itemMeta.getPersistentDataContainer();
                 if (container.has(plugin.getKeyUUID(), new PersistentUUID())) {
@@ -166,7 +172,7 @@ public class CommandSignMap extends BaseCommand {
                 container.set(plugin.getKeyUUID(), new PersistentUUID(), uuid);
                 container.set(plugin.getKeyName(), PersistentDataType.STRING, authorName);
                 // And the text which we'll put in item's lore:
-                String loreText = String.format(plugin.getLocale().LORE_TEXT, authorName);
+                String loreText = MessageFormat.format(plugin.getLocale().FORMAT_LORE_TEXT, authorName);
                 container.set(plugin.getKeyLore(), PersistentDataType.STRING, ChatColor.stripColor(loreText));
                 // We also add lore line saying who signed the map:
                 List<String> lore = ((lore = itemMeta.getLore()) != null) ? lore : new ArrayList<>();
@@ -178,21 +184,15 @@ public class CommandSignMap extends BaseCommand {
             }
         }
 
-        if (succeeded == 0)
+        if (succeeded == 0) {
             player.sendMessage(plugin.getLocale().ERROR_ALL_MAPS_ALREADY_SIGNED);
-        else {
-            int total = succeeded + failed;
-            player.sendMessage(String.format(plugin.getLocale().MAPS_FOUND.replace("{map(s)}", (total == 1)
-                    ? plugin.getLocale()._MAP
-                    : plugin.getLocale()._MAPS), total));
-            player.sendMessage(String.format(plugin.getLocale().SIGNALL_MAPS_SIGNED.replace("{map(s)}", (succeeded == 1)
-                    ? plugin.getLocale()._MAP
-                    : plugin.getLocale()._MAPS), succeeded));
-            if (failed != 0)
-                player.sendMessage(String.format(plugin.getLocale().SIGNALL_MAPS_ALREADY_SIGNED.replace("{map(s)}", (failed == 1)
-                        ? plugin.getLocale()._MAP
-                        : plugin.getLocale()._MAPS), failed));
+            return;
         }
+        int total = succeeded + failed;
+        player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_MAPS_FOUND, total));
+        player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_SIGNALL_MAPS_SIGNED, succeeded));
+        if (failed != 0)
+            player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_SIGNALL_MAPS_ALREADY_SIGNED, failed));
     }
 
     @CommandAlias("unsignall")
@@ -215,6 +215,8 @@ public class CommandSignMap extends BaseCommand {
             if (item == null)
                 continue;
             if (item.getType() == Material.FILLED_MAP) {
+                if (!item.hasItemMeta())
+                    player.sendMessage("[SignMap] Something went wrong, please contact plugin developer.");
                 ItemMeta itemMeta = item.getItemMeta();
                 PersistentDataContainer container = itemMeta.getPersistentDataContainer();
                 if (!container.has(plugin.getKeyUUID(), new PersistentUUID())) {
@@ -251,27 +253,21 @@ public class CommandSignMap extends BaseCommand {
             }
         }
 
-        if (succeeded == 0 && signed_by_another == 0)
+        if (succeeded == 0 && signed_by_another == 0) {
             player.sendMessage(plugin.getLocale().ERROR_ALL_MAPS_NOT_SIGNED);
-        else if (succeeded == 0 && not_signed == 0) {
-            player.sendMessage(plugin.getLocale().ERROR_ALL_MAPS_SIGNED_BY_ANOTHER);
-        } else {
-            int total = succeeded + not_signed + signed_by_another;
-            player.sendMessage(String.format(plugin.getLocale().MAPS_FOUND.replace("{map(s)}", (total == 1)
-                    ? plugin.getLocale()._MAP
-                    : plugin.getLocale()._MAPS), total));
-            if (succeeded != 0)
-                player.sendMessage(String.format(plugin.getLocale().UNSIGNALL_MAPS_UNSIGNED.replace("{map(s)}", (succeeded == 1)
-                        ? plugin.getLocale()._MAP
-                        : plugin.getLocale()._MAPS), succeeded));
-            if (not_signed != 0)
-                player.sendMessage(String.format(plugin.getLocale().UNSIGNALL_MAPS_NOT_SIGNED.replace("{map(s)}", (not_signed == 1)
-                        ? plugin.getLocale()._MAP
-                        : plugin.getLocale()._MAPS), not_signed));
-            if (signed_by_another != 0)
-                player.sendMessage(String.format(plugin.getLocale().UNSIGNALL_MAPS_SIGNED_BY_ANOTHER.replace("{map(s)}", (signed_by_another == 1)
-                        ? plugin.getLocale()._MAP
-                        : plugin.getLocale()._MAPS), signed_by_another));
+            return;
         }
+        if (succeeded == 0 && not_signed == 0) {
+            player.sendMessage(plugin.getLocale().ERROR_ALL_MAPS_SIGNED_BY_ANOTHER);
+            return;
+        }
+        int total = succeeded + not_signed + signed_by_another;
+        player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_MAPS_FOUND, total));
+        if (succeeded != 0)
+            player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_UNSIGNALL_MAPS_UNSIGNED, succeeded));
+        if (not_signed != 0)
+            player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_UNSIGNALL_MAPS_NOT_SIGNED, not_signed));
+        if (signed_by_another != 0)
+            player.sendMessage(plugin.getLocale().replaceMapsPlaceholder(plugin.getLocale().FORMAT_UNSIGNALL_MAPS_SIGNED_BY_ANOTHER, signed_by_another));
     }
 }

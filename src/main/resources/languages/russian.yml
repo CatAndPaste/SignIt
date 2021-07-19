@@ -5,46 +5,46 @@
 
 message-prefix: "&7[&fSign&cMap&7]" # space after prefix will be added automagically
 
-# Individual map messages:
+# Individual map messages (/signmap and /unsignmap):
+# {author} - name of the player who signed the map.
 message-error-no-map-to-sign: "&cКарта, на которой вы хотите оставить подпись, должна быть у вас в руках!"
 message-error-no-map-to-unsign: "&cКарта, с которой вы хотите стереть подпись, должна быть у вас в руках!"
-message-error-map-already-signed: "&cНа карте уже есть подпись &6%s&c." # %s - name of the player who signed the map
+message-error-map-already-signed: "&cНа карте уже есть подпись &6{author}&c."
 message-error-map-not-signed: "&cНа карте нет подписи!"
 message-error-not-allowed-to-unsign: "&cХей, только игрок, подписавший карту, или оператор сервера может убрать подпись!"
-message-signed-successfully: "&aКарта подписана! Автор: &e%s&a." # %s - name of the player
+message-signed-successfully: "&aКарта подписана! Автор: &e{author}&a."
 message-unsigned-successfully: "&aПодпись с карты удалена! Теперь любой игрок может ее скопировать!"
-message-error-not-allowed-to-copy: "&cХей, вы не можете скопировать эту карту! Она подписана &6%s&c." # %s - name of the player
+message-error-not-allowed-to-copy: "&cХей, вы не можете скопировать эту карту! Она подписана &6{author}&c."
 
-# Multiple maps messages:
-# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if number is 1
-# or message-placeholder-maps if number is not 1.
+# Multiple maps messages (/signall and /unsignall):
+# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if {amount} is 1
+# or message-placeholder-maps if {amount} is not 1.
 message-error-no-maps-in-inventory: "&cУ вас в инвентаре нет карт, которые можно было бы подписать!"
 message-error-all-maps-signed: "&cВсе карты в вашем инвентаре уже имеют подписи!"
 message-error-all-maps-not-signed: "&cНа картах в вашем инвентаре подписей нет!"
 message-error-all-maps-signed-by-someone-else: "&cВсе карты в вашем инвентаре подписаны кем-то еще!"
 message-error-all-maps-cannot-be-unsigned: "&cВсе карты в вашем инвентаре либо не имеют подписи, либо подписаны кем-то еще!"
-message-maps-found-in-inventory: "&aВ вашем инвентаре %d {map(s)}:"        # %d is number
-message-maps-signed-successfully: "&aПодписано: %d {map(s)}."
-message-maps-already-signed: "&eПропущено: %d {map(s)}, где уже есть подпись."
-message-maps-unisigned-successfully: "&aПодпись удалена: %d {map(s)}."
-message-maps-not-signed: "&eПропущено: %d {map(s)}, где нет подписи."
-message-maps-signed-by-someone-else: "&eПропущено: %d {map(s)}, где имеется чужая подпись."
+message-maps-found-in-inventory: "&aВ вашем инвентаре {amount} {map(s)}:"
+message-maps-signed-successfully: "&aПодписано: {amount} {map(s)}."
+message-maps-already-signed: "&eПропущено: {amount} {map(s)}, где уже есть подпись."
+message-maps-unisigned-successfully: "&aПодпись удалена: {amount} {map(s)}."
+message-maps-not-signed: "&eПропущено: {amount} {map(s)}, где нет подписи."
+message-maps-signed-by-someone-else: "&eПропущено: {amount} {map(s)}, где имеется чужая подпись."
 
 # Placeholders for messages:
-message-placeholder-map: "карта"    # single map
-message-placeholder-maps: "карт"  # plural maps
+message-placeholder-map: "карта"
+message-placeholder-maps: "карт"
 
 # Other messages:
 message-reloaded: "&aФайл конфигурации и {language}.yml перезагружены!"
 
 # Other text:
 # Appears in the lore of the signed maps.
-# %s - name of the player who signed the map.
-lore-text: "&7Подписано: &6%s"
+lore-text: "&7Подписано: &6{author}"
 # Placeholder will only appear if no information was found about name of the player who signed the map.
 # It's here just-in-case. No one will probably see this placeholder anyway.
 unknown-player: "неизвестный игрок"
 
 # Please DO NOT change the value below, so your language file can get new strings in future updates.
 # Your changes will be preserved.
-locale-version: 1
+locale-version: 0

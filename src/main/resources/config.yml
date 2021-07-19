@@ -43,4 +43,4 @@ unsignmap-aliases: unsign
 # Your changes will be preserved.
 # Otherwise, you'd need to remove plugins/SignMap/ contents (or SignMap folder itself) and use /signmap reload command
 # or restart the server in order to get up-to-date config and locale files.
-config-version: 1
+config-version: 0

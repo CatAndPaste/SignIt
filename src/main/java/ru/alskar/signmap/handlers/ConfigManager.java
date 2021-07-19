@@ -49,7 +49,7 @@ public class ConfigManager {
         currentLocaleVersion = newLocale.getInt("locale-version");
     }
 
-    // Replaces value in freshly made config file with one from the old configuraion:
+    // Replaces value in freshly made config file with one from the old configuration:
     private String makeReplacement(String str, Map<String, Object> replacementMap, boolean stringQuotes) {
         String[] split = str.split(":");
         if (ignoreList.contains(split[0]))
