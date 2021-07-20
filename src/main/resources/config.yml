@@ -36,6 +36,7 @@ show-prefix: false
 
 # Commands aliases:
 # Use '|' as separator, e.g.: signmap-aliases: sign|sm|signthis
+# Changes in the aliases will take effect after next server restart
 signmap-aliases: sign
 unsignmap-aliases: unsign
 

@@ -1,5 +1,5 @@
 # Locale file for SignMap plugin
-# Translation: Alskar
+# Russian translation by Alskar
 # You can use Minecraft color and formatting codes starting with "&"
 # Cheatsheet: https://cutt.ly/BmDZWdp
 
@@ -17,7 +17,7 @@ message-unsigned-successfully: "&aПодпись с карты удалена! �
 message-error-not-allowed-to-copy: "&cХей, вы не можете скопировать эту карту! Она подписана &6{author}&c."
 
 # Multiple maps messages (/signall and /unsignall):
-# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if {amount} is 1
+# {map(s)} is a placeholder, it will be changed to message-placeholder-map if {amount} is 1
 # or message-placeholder-maps if {amount} is not 1.
 message-error-no-maps-in-inventory: "&cУ вас в инвентаре нет карт, которые можно было бы подписать!"
 message-error-all-maps-signed: "&cВсе карты в вашем инвентаре уже имеют подписи!"

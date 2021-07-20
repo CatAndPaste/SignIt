@@ -17,7 +17,7 @@ message-unsigned-successfully: "&aMap unsigned successfully! Anyone can copy it 
 message-error-not-allowed-to-copy: "&cHey, you cannot copy this map! It was signed by &6{author}&c."
 
 # Multiple maps messages (/signall and /unsignall):
-# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if {amount} is 1
+# {map(s)} is a placeholder, it will be changed to message-placeholder-map if {amount} is 1
 # or message-placeholder-maps if {amount} is not 1.
 message-error-no-maps-in-inventory: "&cThere are no filled maps found in your inventory!"
 message-error-all-maps-signed: "&cAll maps in your inventory already signed!"

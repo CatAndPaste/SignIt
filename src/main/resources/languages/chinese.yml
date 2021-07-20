@@ -1,5 +1,5 @@
 # Locale file for SignMap plugin
-# Translation: 小龍
+# Chinese traditional translation by 小龍
 # You can use Minecraft color and formatting codes starting with "&"
 # Cheatsheet: https://cutt.ly/BmDZWdp
 
@@ -9,35 +9,35 @@ message-prefix: "&7[&fSign&cMap&7]" # space after prefix will be added automagic
 # {author} - name of the player who signed the map.
 message-error-no-map-to-sign: "&c你的主手需要拿著一張想簽署的地圖"
 message-error-no-map-to-unsign: "&c你的主手需要拿著一張想解除簽署的地圖"
-message-error-map-already-signed: "&c這張地圖已經被&6{author}&c簽署了。"
+message-error-map-already-signed: "&c這張地圖已經被&6{author}&c簽署。"
 message-error-map-not-signed: "&c這張地圖沒有被簽署。"
 message-error-not-allowed-to-unsign: "&c只有簽署這張地圖的玩家或伺服器管理員能夠解除簽署。"
 message-signed-successfully: "&a這張地圖已經成功被簽署了，簽署人為&e{author}&a。"
 message-unsigned-successfully: "&a這張地圖已經成功被解除簽署，任何人都可以複製這張地圖。"
-message-error-not-allowed-to-copy: "&c你不能複製這張地圖，這張地圖已被&6{author}&c簽署了。"
+message-error-not-allowed-to-copy: "&c你不能複製這張地圖，這張地圖已被&6{author}&c簽署。"
 
 # Multiple maps messages (/signall and /unsignall):
-# {map(s)} is a placeholder, it will be replaced to message-placeholder-map if {amount} is 1
+# {map(s)} is a placeholder, it will be changed to message-placeholder-map if {amount} is 1
 # or message-placeholder-maps if {amount} is not 1.
-message-error-no-maps-in-inventory: "&cThere are no filled maps found in your inventory!"
-message-error-all-maps-signed: "&cAll maps in your inventory already signed!"
-message-error-all-maps-not-signed: "&cMaps in your inventory are not signed!"
-message-error-all-maps-signed-by-someone-else: "&cAll maps in your inventory signed by someone else!"
-message-error-all-maps-cannot-be-unsigned: "&cAll maps in your inventory are either signed by someone else or have no sign!"
-message-maps-found-in-inventory: "&aI looked through your inventory and found {amount} {map(s)}."
-message-maps-signed-successfully: "&aSuccessfully signed {amount} {map(s)}."
-message-maps-already-signed: "&e{amount} {map(s)} already signed, skipped."
-message-maps-unisigned-successfully: "&aSuccessfully unsigned {amount} {map(s)}"
-message-maps-not-signed: "&e{amount} {map(s)} not signed, skipped."
-message-maps-signed-by-someone-else: "&e{amount} {map(s)} signed by someone else, skipped."
+message-error-no-maps-in-inventory: "&c你的物品欄沒有存在任何地圖。"
+message-error-all-maps-signed: "&c你物品欄內的所有地圖已經被簽署。"
+message-error-all-maps-not-signed: "&c你物品欄內的所有地圖沒有被簽署。"
+message-error-all-maps-signed-by-someone-else: "&c你物品欄內的所有地圖已經被其他玩家簽署。"
+message-error-all-maps-cannot-be-unsigned: "&c你物品欄內的所有地圖沒有被簽署。"
+message-maps-found-in-inventory: "&a你的物品欄有{amount}張{map(s)}。"
+message-maps-signed-successfully: "&a成功簽署{amount}張{map(s)}。"
+message-maps-already-signed: "&e{amount}張{map(s)}已經被簽署，無法被簽署。"
+message-maps-unisigned-successfully: "&a成功解除簽署{amount}張{map(s)}。"
+message-maps-not-signed: "&e{amount}張{map(s)}沒有被簽署，無法被解除簽署。"
+message-maps-signed-by-someone-else: "&e{amount}張{map(s)}已經被其他玩家簽署。"
 
 # Placeholders for messages:
-message-placeholder-map: "map"    # single map
-message-placeholder-maps: "maps"  # plural maps
+message-placeholder-map: "地圖"    # single map
+message-placeholder-maps: "地圖"  # plural maps
 
 # Other messages:
-message-reloading: "&7Configuration and language files are reloading..."
-message-reloaded: "&aConfiguration and {language}.yml files successfully loaded!"
+message-reloading: "&7配置和語言檔案正在重新加載..."
+message-reloaded: "&a配置和{language}.yml檔案已成功加載。"
 
 # Other text:
 # Appears in the lore of the signed maps.
