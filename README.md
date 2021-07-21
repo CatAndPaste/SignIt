@@ -1,6 +1,8 @@
 # SignMap
 Minecraft plugin which gives your players an ability to sign maps preventing other players from copying them.
 
+<div style="text-align:center"><img src="https://imgur.com/NesIUH2" /></div>
+
 ## Commands
 | Command | Aliases | Description |
 | --- | --- | --- |
