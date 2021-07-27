@@ -1,5 +1,6 @@
 package ru.alskar.signit;
 import co.aikar.commands.PaperCommandManager;
+import de.jeff_media.updatechecker.UpdateChecker;
 import lombok.Getter;
 import lombok.Setter;
 import org.bstats.bukkit.Metrics;
@@ -35,14 +36,13 @@ public class SignIt extends JavaPlugin {
         final int pluginId = 12239;
         Metrics metrics = new Metrics(this, pluginId);
         // Adding update checker by Jeff Media:
-        final int spigotResourceID = 99999;
-        /*
+        final int spigotResourceID = 94720;
         UpdateChecker.init(this, spigotResourceID)
                 .suppressUpToDateMessage(true)
                 .checkEveryXHours(24)
                 .setNotifyOpsOnJoin(false)
                 .checkNow();
-         */
+
         // Registering commands:
         PaperCommandManager commandManager = new PaperCommandManager(this);
         commandManager.getCommandReplacements().addReplacement("signit", "signit|" +

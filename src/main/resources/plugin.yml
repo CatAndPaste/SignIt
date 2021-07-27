@@ -36,5 +36,5 @@ commands:
     description: "Unsigns all accessible maps in player's inventory"
     usage: /<command>
   reload:
-    description: "Reloads plugin configuration and active language file"
+    description: "Reloads plugin configuration and language file specified in config"
     usage: /<command>
