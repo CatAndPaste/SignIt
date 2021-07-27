@@ -1,24 +1,24 @@
-package ru.alskar.signmap.handlers;
+package ru.alskar.signit.handlers;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import ru.alskar.signmap.SignMap;
-import ru.alskar.signmap.config.Config;
-import ru.alskar.signmap.config.Locale;
+import ru.alskar.signit.SignIt;
+import ru.alskar.signit.config.Config;
+import ru.alskar.signit.config.Locale;
 
 import java.io.*;
 import java.util.*;
 
 public class ConfigManager {
 
-    final SignMap plugin;
+    final SignIt plugin;
 
     private int previousConfigVersion = 0, currentConfigVersion = 0;
     private int previousLocaleVersion = 0, currentLocaleVersion = 0;
 
     final private List<String> ignoreList;
 
-    public ConfigManager(SignMap plugin) {
+    public ConfigManager(SignIt plugin) {
         this.plugin = plugin;
         ignoreList = new ArrayList<>(Arrays.asList("config-version", "locale-version"));
     }

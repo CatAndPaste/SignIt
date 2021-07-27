@@ -1,4 +1,4 @@
-package ru.alskar.signmap.config;
+package ru.alskar.signit.config;
 
 public final class Config {
     public static String GREETING_KITTEN = "enable-kitten-on-startup";

@@ -1,4 +1,4 @@
-package ru.alskar.signmap.types;
+package ru.alskar.signit.types;
 
 import org.bukkit.persistence.PersistentDataAdapterContext;
 import org.bukkit.persistence.PersistentDataType;

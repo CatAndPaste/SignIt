@@ -1,9 +1,9 @@
-package ru.alskar.signmap.config;
+package ru.alskar.signit.config;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
-import ru.alskar.signmap.SignMap;
+import ru.alskar.signit.SignIt;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +41,7 @@ public class Locale {
     private final YamlConfiguration messages;
     private final boolean showPrefix;
 
-    public Locale(SignMap plugin, String language) {
+    public Locale(SignIt plugin, String language) {
         File messagesFile = new File(plugin.getDataFolder() + File.separator + "languages" + File.separator + language + ".yml");
 
         messages = new YamlConfiguration();
@@ -58,7 +58,7 @@ public class Locale {
                 !messages.getString("message-prefix", "").isEmpty();
 
         this.PREFIX = ChatColor.translateAlternateColorCodes('&',
-                messages.getString("message-prefix", "&7[&fSign&cMap&7]") + " ");
+                messages.getString("message-prefix", "&7[&fSign&cIt&7]") + " ");
 
         this.ERROR_NO_MAP_IN_HAND_TO_SIGN = buildPrefixedMessage("message-error-no-map-to-sign",
                         "&cYou need to have the map you want to sign in your main hand!");

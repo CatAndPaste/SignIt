@@ -1,4 +1,4 @@
-package ru.alskar.signmap.misc;
+package ru.alskar.signit.misc;
 
 public final class Logs {
     public static int INFO = 0;

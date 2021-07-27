@@ -1,4 +1,4 @@
-package ru.alskar.signmap.listeners;
+package ru.alskar.signit.listeners;
 
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
@@ -11,16 +11,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import ru.alskar.signmap.misc.Logs;
-import ru.alskar.signmap.types.PersistentUUID;
-import ru.alskar.signmap.SignMap;
+import ru.alskar.signit.misc.Logs;
+import ru.alskar.signit.types.PersistentUUID;
+import ru.alskar.signit.SignIt;
 
 import java.text.MessageFormat;
 import java.util.UUID;
 
 public class ListenerMapCloning implements Listener {
 
-    private static final SignMap plugin = SignMap.getInstance();
+    private static final SignIt plugin = SignIt.getInstance();
 
     @EventHandler
     public void onNormalCraft(PrepareItemCraftEvent e) {
@@ -38,7 +38,7 @@ public class ListenerMapCloning implements Listener {
                 HumanEntity viewer = e.getView().getPlayer();
                 if (!(viewer instanceof Player)) {
                     e.getInventory().setResult(new ItemStack(Material.AIR));
-                    plugin.log(Logs.WARN, "[SignMap] Seems like non-player entity tried to copy map, " +
+                    plugin.log(Logs.WARN, "[SignIt] Seems like non-player entity tried to copy map, " +
                             "operation denied.");
                     return;
                 }
@@ -48,7 +48,8 @@ public class ListenerMapCloning implements Listener {
                     e.getInventory().setResult(new ItemStack(Material.AIR));
                     Player player = (Player) e.getView().getPlayer();
                     String author = container.has(plugin.getKeyName(), PersistentDataType.STRING) ?
-                                    container.get(plugin.getKeyName(), PersistentDataType.STRING) : "unknown player";
+                                    container.get(plugin.getKeyName(), PersistentDataType.STRING) :
+                            plugin.getLocale().PH_UNKNOWN_PLAYER;
                     player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_ERROR_NOT_ALLOWED_TO_COPY, author));
                 }
             }
@@ -73,7 +74,7 @@ public class ListenerMapCloning implements Listener {
                     HumanEntity viewer = e.getView().getPlayer();
                     if (!(viewer instanceof Player)) {
                         e.setCancelled(true);
-                        plugin.log(Logs.WARN, "[SignMap] Seems like non-player entity tried to copy a map " +
+                        plugin.log(Logs.WARN, "[SignIt] Seems like non-player entity tried to copy a map " +
                                 "using Cartography Table, operation denied.");
                         return;
                     }

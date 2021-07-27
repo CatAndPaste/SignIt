@@ -1,4 +1,4 @@
-package ru.alskar.signmap.commands;
+package ru.alskar.signit.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
@@ -10,9 +10,9 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-import ru.alskar.signmap.config.Config;
-import ru.alskar.signmap.types.PersistentUUID;
-import ru.alskar.signmap.SignMap;
+import ru.alskar.signit.config.Config;
+import ru.alskar.signit.types.PersistentUUID;
+import ru.alskar.signit.SignIt;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -21,11 +21,11 @@ import java.util.UUID;
 
 public class CommandSignMap extends BaseCommand {
 
-    private static final SignMap plugin = SignMap.getInstance();
+    private static final SignIt plugin = SignIt.getInstance();
 
-    @CommandAlias("%signmap")
+    @CommandAlias("%signit")
     @Description("Sings map in main hand, preventing others from copying it")
-    @CommandPermission("signmap.sign")
+    @CommandPermission("signit.sign")
     public static void onSign(Player player) {
         // If player doesn't hold a map, show them an error message and do nothing.
         if (player.getInventory().getItemInMainHand().getType() != Material.FILLED_MAP) {
@@ -36,7 +36,7 @@ public class CommandSignMap extends BaseCommand {
         // Otherwise, let's take a closer look at the map!
         ItemStack item = player.getInventory().getItemInMainHand();
         if (!item.hasItemMeta())
-            player.sendMessage("[SignMap] Something went wrong, please contact plugin developer.");
+            player.sendMessage("[SignIt] Something went wrong, please contact plugin developer.");
         ItemMeta itemMeta = item.getItemMeta();
         PersistentDataContainer container = itemMeta.getPersistentDataContainer();
 
@@ -77,9 +77,9 @@ public class CommandSignMap extends BaseCommand {
         player.sendMessage(MessageFormat.format(plugin.getLocale().FORMAT_SUCCESSFULLY_SIGNED, authorName));
     }
 
-    @CommandAlias("%unsignmap")
+    @CommandAlias("%unsignit")
     @Description("Unsigns map in main hand, so anyone can copy it. Available only for player who signed the map and operators")
-    @CommandPermission("signmap.unsign")
+    @CommandPermission("signit.unsign")
     public static void onUnsign(Player player) {
         // If player doesn't hold a map, show them an error message and do nothing.
         if (player.getInventory().getItemInMainHand().getType() != Material.FILLED_MAP) {
@@ -135,7 +135,7 @@ public class CommandSignMap extends BaseCommand {
 
     @CommandAlias("signall")
     @Description("Sings all accessible maps in player's inventory")
-    @CommandPermission("signmap.signall")
+    @CommandPermission("signit.signall")
     public static void onSignall(Player player) {
         // Let's look through player's inventory, and if there are no maps, show an error.
         PlayerInventory inv = player.getInventory();
@@ -197,7 +197,7 @@ public class CommandSignMap extends BaseCommand {
 
     @CommandAlias("unsignall")
     @Description("Unsigns all accessible maps in player's inventory")
-    @CommandPermission("signmap.unsignall")
+    @CommandPermission("signit.unsignall")
     public static void onUnsignall(Player player) {
         // Let's look through player's inventory, and if there are no maps, show an error.
         PlayerInventory inv = player.getInventory();

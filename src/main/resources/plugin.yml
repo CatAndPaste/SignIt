@@ -1,32 +1,32 @@
-name: SignMap
-main: ru.alskar.signmap.SignMap
+name: SignIt
+main: ru.alskar.signit.SignIt
 version: ${project.version}
 author: "Alskar"
 api-version: "1.14"
 permissions:
-  signmap.sign:
+  signit.sign:
     description: "Players with this permission are able to sign maps"
     default: true
-  signmap.unsign:
+  signit.unsign:
     description: "Players with this permission are able to unsign maps signed by them"
     default: true
-  signmap.signall:
+  signit.signall:
     description: "Players with this permission are able to sign all maps in their inventory"
     default: true
-  signmap.unsignall:
+  signit.unsignall:
     description: "Players with this permission are able to unsign all allowed maps in their inventory"
     default: true
-  signmap.unsign.others:
+  signit.unsign.others:
     description: "Players with this permission are able to unsign maps signed by other players. Server operators have this by default"
     default: op
-  signmap.reload:
+  signit.reload:
     description: "Players with this permission are able to reload plugin configuration and active language file"
     default: op
 commands:
-  signmap:
+  signit:
     description: "Sings map in main hand, preventing others from copying it."
     usage: /<command>
-  unsignmap:
+  unsignit:
     description: "Unsigns map in main hand, so anyone can copy it. Available only for player who signed the map and operators"
     usage: /<command>
   signall:

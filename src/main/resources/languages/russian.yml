@@ -1,11 +1,11 @@
-# Locale file for SignMap plugin
+# Locale file for SignIt plugin
 # Russian translation by Alskar
 # You can use Minecraft color and formatting codes starting with "&"
 # Cheatsheet: https://cutt.ly/BmDZWdp
 
-message-prefix: "&7[&fSign&cMap&7]" # space after prefix will be added automagically
+message-prefix: "&7[&fSign&cIt&7]" # space after prefix will be added automagically
 
-# Individual map messages (/signmap and /unsignmap):
+# Individual map messages (/signit and /unsignit):
 # {author} - name of the player who signed the map.
 message-error-no-map-to-sign: "&cКарта, на которой вы хотите оставить подпись, должна быть у вас в руках!"
 message-error-no-map-to-unsign: "&cКарта, с которой вы хотите стереть подпись, должна быть у вас в руках!"

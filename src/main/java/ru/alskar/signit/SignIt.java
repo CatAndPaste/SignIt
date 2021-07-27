@@ -1,22 +1,21 @@
-package ru.alskar.signmap;
+package ru.alskar.signit;
 import co.aikar.commands.PaperCommandManager;
-import de.jeff_media.updatechecker.UpdateChecker;
 import lombok.Getter;
 import lombok.Setter;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.NamespacedKey;
 import org.bukkit.plugin.java.JavaPlugin;
-import ru.alskar.signmap.commands.CommandSignMap;
-import ru.alskar.signmap.commands.SubcommandSignMap;
-import ru.alskar.signmap.config.Config;
-import ru.alskar.signmap.config.Locale;
-import ru.alskar.signmap.handlers.ConfigManager;
-import ru.alskar.signmap.listeners.ListenerMapCloning;
-import ru.alskar.signmap.misc.Logs;
+import ru.alskar.signit.commands.CommandSignMap;
+import ru.alskar.signit.commands.SubcommandSignMap;
+import ru.alskar.signit.config.Config;
+import ru.alskar.signit.config.Locale;
+import ru.alskar.signit.handlers.ConfigManager;
+import ru.alskar.signit.listeners.ListenerMapCloning;
+import ru.alskar.signit.misc.Logs;
 
-public class SignMap extends JavaPlugin {
+public class SignIt extends JavaPlugin {
 
-    @Getter private static SignMap instance;
+    @Getter private static SignIt instance;
     @Getter private final NamespacedKey keyUUID = new NamespacedKey(this, "author-uuid");
     @Getter private final NamespacedKey keyName = new NamespacedKey(this, "author-name");
     @Getter private final NamespacedKey keyLore = new NamespacedKey(this, "lore-text");
@@ -46,22 +45,22 @@ public class SignMap extends JavaPlugin {
          */
         // Registering commands:
         PaperCommandManager commandManager = new PaperCommandManager(this);
-        commandManager.getCommandReplacements().addReplacement("signmap", "signmap|" +
-                this.getConfig().getString("signmap-aliases"));
-        commandManager.getCommandReplacements().addReplacement("unsignmap", "unsignmap|" +
-                this.getConfig().getString("unsignmap-aliases"));
+        commandManager.getCommandReplacements().addReplacement("signit", "signit|" +
+                this.getConfig().getString("signit-aliases"));
+        commandManager.getCommandReplacements().addReplacement("unsignit", "unsignit|" +
+                this.getConfig().getString("unsignit-aliases"));
         commandManager.registerCommand(new CommandSignMap());
         commandManager.registerCommand(new SubcommandSignMap());
         // And listeners:
         getServer().getPluginManager().registerEvents(new ListenerMapCloning(), this);
         // Drawing cute kitten. For fun.
         if (this.getConfig().getBoolean(Config.GREETING_KITTEN)) {
-            log("[SignMap] Hey! What is it?\n" +
+            log("[SignIt] Hey! What is it?\n" +
                     "\n──────────▄▀▄─────────▄▀▄" +
                     "\n────────▄█░░▀▀▀▀▀░░█▄" +
                     "\n──▄▄──█░░░░░░░░░░░█──▄▄" +
                     "\n█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█");
-            log("[SignMap] Oh, I see. Just two cute kittens looking at each other!");
+            log("[SignIt] Oh, I see. Just two cute kittens looking at each other!");
         }
     }
 
@@ -71,12 +70,12 @@ public class SignMap extends JavaPlugin {
 
     public void log(int broadcastType, String message) {
         if (broadcastType == 1) {
-            this.getLogger().warning("[SignMap] " + message);
+            this.getLogger().warning("[SignIt] " + message);
         }
         else if (broadcastType == 2) {
-            this.getLogger().severe("[SignMap] " + message);
+            this.getLogger().severe("[SignIt] " + message);
         }
         else
-            this.getLogger().info("[SignMap] " + message);
+            this.getLogger().info("[SignIt] " + message);
     }
 }

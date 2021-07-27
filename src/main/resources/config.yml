@@ -1,16 +1,16 @@
-# Configuration file for SignMap plugin
+# Configuration file for SignIt plugin
 # Made by Alskar with <3
 
 # Commands:
-# /signmap - sings the map in hand,           permission: signmap.sign (default: true)
-# /unsignmap - unsigns the map in hand,       permission: signmap.unsign (default: true)
-# /signall - signs the maps in inventory,     permission: signmap.signall (default: true)
-# /unsignall - unsigns the maps in inventory, permission: signmap.unsignall (default: true)
-# /signmap reload - reloads config and lang,  permission: signmap.reload (OP)
+# /signit - sings the map in hand,            permission: signit.sign (default: true)
+# /unsignit - unsigns the map in hand,        permission: signit.unsign (default: true)
+# /signall - signs the maps in inventory,     permission: signit.signall (default: true)
+# /unsignall - unsigns the maps in inventory, permission: signit.unsignall (default: true)
+# /signit reload - reloads config and lang,   permission: signit.reload (OP)
 # Other permissions:
-# signmap.unsign.others - allows to unsign the maps signed by other players (OP)
+# signit.unsign.others - allows to unsign the maps signed by other players (OP)
 
-# Which language file should be used. They're stored in SignMap/languages/.
+# Which language file should be used. They're stored in SignIt/languages/.
 # You can even create your own!
 language: english
 
@@ -35,13 +35,13 @@ use-display-names-colors: false
 show-prefix: false
 
 # Commands aliases:
-# Use '|' as separator, e.g.: signmap-aliases: sign|sm|signthis
+# Use '|' as separator, e.g.: signit-aliases: sign|si|signthis
 # Changes in the aliases will take effect after next server restart
-signmap-aliases: sign
-unsignmap-aliases: unsign
+signit-aliases: sign
+unsignit-aliases: unsign
 
 # Please DO NOT change the value below, so your configuration file can get new options in future updates.
 # Your changes will be preserved.
-# Otherwise, you'd need to remove plugins/SignMap/ contents (or SignMap folder itself) and use /signmap reload command
+# Otherwise, you'd need to remove plugins/SignIt/ contents (or SignIt folder itself) and use /signit reload command
 # or restart the server in order to get up-to-date config and locale files.
 config-version: 0

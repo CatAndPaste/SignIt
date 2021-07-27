@@ -1,11 +1,11 @@
-# Locale file for SignMap plugin
+# Locale file for SignIt plugin
 # Chinese traditional translation by 小龍
 # You can use Minecraft color and formatting codes starting with "&"
 # Cheatsheet: https://cutt.ly/BmDZWdp
 
-message-prefix: "&7[&fSign&cMap&7]" # space after prefix will be added automagically
+message-prefix: "&7[&fSign&cIt&7]" # space after prefix will be added automagically
 
-# Individual map messages (/signmap and /unsignmap):
+# Individual map messages (/signit and /unsignit):
 # {author} - name of the player who signed the map.
 message-error-no-map-to-sign: "&c你的主手需要拿著一張想簽署的地圖"
 message-error-no-map-to-unsign: "&c你的主手需要拿著一張想解除簽署的地圖"
