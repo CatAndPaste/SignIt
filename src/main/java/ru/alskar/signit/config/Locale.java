@@ -94,7 +94,7 @@ public class Locale {
         this.FORMAT_SUCCESSFULLY_SIGNED = buildPrefixedMessage("message-signed-successfully",
                 "&aMap signed successfully! Author is now set to &e{author}&a.")
                 .replace("{author}", "{0}");
-        this.FORMAT_MAPS_FOUND = buildPrefixedMessage("maps-found-in-inventory",
+        this.FORMAT_MAPS_FOUND = buildPrefixedMessage("message-maps-found-in-inventory",
                 "&aI looked through your inventory and found {amount} {map(s)}:")
                 .replace("{amount}", "{0}").replace("{map(s)}", "{1}");
         this.FORMAT_SIGNALL_MAPS_SIGNED = buildMessage("message-maps-signed-successfully",

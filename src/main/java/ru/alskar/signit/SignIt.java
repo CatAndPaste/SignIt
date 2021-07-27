@@ -32,7 +32,7 @@ public class SignIt extends JavaPlugin {
     public void onEnable() {
         configManager.createConfig();
         // Adding Metrics by bStats:
-        final int pluginId = 12054;
+        final int pluginId = 12239;
         Metrics metrics = new Metrics(this, pluginId);
         // Adding update checker by Jeff Media:
         final int spigotResourceID = 99999;
@@ -55,12 +55,12 @@ public class SignIt extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ListenerMapCloning(), this);
         // Drawing cute kitten. For fun.
         if (this.getConfig().getBoolean(Config.GREETING_KITTEN)) {
-            log("[SignIt] Hey! What is it?\n" +
+            log("Hey! What is it?\n" +
                     "\n──────────▄▀▄─────────▄▀▄" +
                     "\n────────▄█░░▀▀▀▀▀░░█▄" +
                     "\n──▄▄──█░░░░░░░░░░░█──▄▄" +
                     "\n█▄▄█─█░░▀░░┬░░▀░░█─█▄▄█");
-            log("[SignIt] Oh, I see. Just two cute kittens looking at each other!");
+            log("Oh, I see. Just two cute kittens looking at each other!");
         }
     }
 
