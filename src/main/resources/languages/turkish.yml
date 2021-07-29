@@ -1,0 +1,53 @@
+# Locale file for SignIt plugin
+# Turkish translation
+# You can use Minecraft color and formatting codes starting with "&"
+# Cheatsheet: https://cutt.ly/BmDZWdp
+
+message-prefix: "&7[&fSign&cIt&7]" # space after prefix will be added automagically
+
+# Individual map messages (/signit and /unsignit):
+# {author} - name of the player who signed the map.
+message-error-no-map-to-sign: "&cHarita imzalamak için haritanızı ana elinizde tutmalısınız!"
+message-error-no-map-to-unsign: "&Haritadan imza kaldırmak için haritanızı ana elinizde tutmalısınız!"
+message-error-map-already-signed: "&cBu harita zaten &6{author}&c tarafından imzalandı."
+message-error-map-not-signed: "&cBu harita imzalanmamış!"
+message-error-not-allowed-to-unsign: "&cHey, sadece haritayı imzalayanlar veya yetkililer bu haritadan imza kaldırabilir!"
+message-signed-successfully: "&aHarita başarıyla imzalandı! Haritanın yeni sahibi &e{author}&a yapıldı."
+message-unsigned-successfully: "&aHaritanın imzası kaldırıldı! Artık herkes haritanın kopyasını alabilir!"
+
+message-error-not-allowed-to-copy: "&cHey, bu haritayı kopyalayamazsın! Harita &6{author}&c tarafından imzalanmış."
+
+# Multiple maps messages (/signall and /unsignall):
+# {map(s)} is a placeholder, it will be changed to message-placeholder-map if {amount} is 1
+# or message-placeholder-maps if {amount} is not 1.
+message-error-no-maps-in-inventory: "&cEnvanterinde hiç harita bulunmuyor!"
+message-error-all-maps-signed: "&cEnvanterindeki tüm haritalar zaten imzalanmış!"
+message-error-all-maps-not-signed: "&cEnvanterindeki haritaların hiçbiri imzalanmamış!"
+message-error-all-maps-signed-by-someone-else: "&cEnvanterindeki haritaların hepsi başkası tarafından imzalanmış!"
+message-error-all-maps-cannot-be-unsigned: "&cEnvanterindeki haritaların hepsi başkası tarafından imzalanmış veya hiç imzalanmamış!"
+message-maps-found-in-inventory: "&aEnvanterine baktım ve {amount} {map(s)} buldum:"
+message-maps-signed-successfully: "&aBaşarıyla {amount} {map(s)} imzalandı."
+message-maps-already-signed: "&e{amount} {map(s)} zaten imzalanmış, pas geçildi."
+message-maps-unisigned-successfully: "&aBaşarıyla {amount} {map(s)}dan imza kaldırıldı."
+message-maps-not-signed: "&e{amount} {map(s)} imzalanmamış, pas geçildi."
+message-maps-signed-by-someone-else: "&e{amount} {map(s)} başkası tarafından imzalanmış, pas geçildi."
+
+# Placeholders for messages:
+message-placeholder-map: "harita"    # single map
+message-placeholder-maps: "harita"  # plural maps
+
+# Other messages:
+message-reloading: "&7Konfigürasyon ve dil dosyaları yenileniyor..."
+message-reloaded: "&7Konfigürasyon ve {language}.yml dosyaları başarıyla yenilendi!"
+
+# Other text:
+# Appears in the lore of the signed maps.
+# %s - name of the player who signed the map.
+lore-text: "&6{author} &7tarafından imzalanmış"
+# Placeholder will only appear if no information was found about name of the player who signed the map.
+# It's here just-in-case. No one will probably see this placeholder anyway.
+unknown-player: "bilinmeyen oyuncu"
+
+# Please DO NOT change the value below, so your language file can get new strings in future updates.
+# Your changes will be preserved.
+locale-version: 0

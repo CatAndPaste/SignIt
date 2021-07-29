@@ -32,7 +32,7 @@ use-display-names-colors: false
 
 # Should the prefix with plugin name be shown before in-game messages?
 # This setting doesn't affect messages in the console.
-show-prefix: false
+show-prefix: true
 
 # Commands aliases:
 # Use '|' as separator, e.g.: signit-aliases: sign|si|signthis
