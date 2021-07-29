@@ -152,6 +152,7 @@ public class ConfigManager {
         locales.add("english");
         locales.add("russian");
         locales.add("chinese");
+        locales.add("turkish");
         for (String lang : locales)
             saveLanguageFile(lang);
         String activeLocale = plugin.getConfig().getString(Config.LOCALE);
